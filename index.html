@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Portfolio de Gonzalo Romero, desarrollador frontend. Proyectos, habilidades y contacto." />
+  <meta name="theme-color" content="#1b242f" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/timeline.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -19,11 +23,12 @@
   <section id="home" class="section-home flex-center flex-column">
     <div class="h1-boton">
       <h1>
-        Hola,soy <span>Gonzalo Romero</span>. <br />Front-End Dev
+        Hola,soy <span>Gonzalo Romero</span>. <br />Full Stack Developer
       </h1>
-      <a href="#portfolio2" alt="Portfolio"><button class="button-home">Sobre mi <i class="fas fa-arrow-right"></i></button></a>
+      <a href="#portfolio2" aria-label="Ir a Sobre mí"><button class="button-home">Sobre mi <i
+            class="fas fa-arrow-right"></i></button></a>
     </div>
-    <video muted autoplay loop>
+    <video muted autoplay loop preload="metadata" playsinline aria-hidden="true">
       <source src="./img/scene-rainbow (1)-2x-RIFE-RIFE23-50fps.mp4" type="video/mp4">
     </video>
   </section>
@@ -37,19 +42,23 @@
       <nav>
         <ul>
           <li>
-            <a href="#home" alt="Home">Inicio</a>
+            <a href="#home" aria-label="Inicio">Inicio</a>
           </li>
           <li>
-            <a href="#about" alt="About">Sobre mi</a>
+            <a href="#about" aria-label="Sobre mí">Sobre mi</a>
           </li>
           <li>
-            <a href="#portfolio" alt="Portfolio">Proyectos</a>
+            <a href="#education" aria-label="Educación">Educación</a>
           </li>
           <li>
-            <a href="#contact" alt="Contact">Contacto</a>
+            <a href="#portfolio" aria-label="Proyectos">Proyectos</a>
+          </li>
+          <li>
+            <a href="#contact" aria-label="Contacto">Contacto</a>
           </li>
         </ul>
       </nav>
+      <button class="theme-toggle" aria-label="Cambiar tema"><i class="iconoir-half-moon"></i></button>
     </div>
   </div>
 
@@ -66,9 +75,9 @@
             </div>
             <div class="hex-desc">
               <h3>Trabajo en Equipo</h3>
-                <p>
-                  Siempre me gusto trabajar en equipo,cuantos mas somos es mejor!
-                </p>
+              <p>
+                Siempre me gusto trabajar en equipo,cuantos mas somos es mejor!
+              </p>
             </div>
           </div>
 
@@ -80,9 +89,9 @@
             </div>
             <div class="hex-desc">
               <h3>Responsabilidad</h3>
-                <p>
-                  Estar atento en cada tarea para lograrlo en tiempo y forma. 
-                </p>
+              <p>
+                Estar atento en cada tarea para lograrlo en tiempo y forma.
+              </p>
             </div>
           </div>
         </div>
@@ -95,9 +104,9 @@
             </div>
             <div class="hex-desc">
               <h3>Empatia</h3>
-                <p>
-                  Ayudar a mi equipo en cada cosa que necesiten,siempre trato de ponerme en lugar del otro y entederlo.
-                </p>
+              <p>
+                Ayudar a mi equipo en cada cosa que necesiten,siempre trato de ponerme en lugar del otro y entederlo.
+              </p>
             </div>
           </div>
 
@@ -119,136 +128,308 @@
 
       <div class="who-is flex-center">
         <div class="my-card">
-          <img class="my-photo" src="img/fotocv.jpg" alt="Photo" />
+          <img class="my-photo" src="img/fotocv.jpg" alt="Foto de Gonzalo Romero" loading="lazy" />
           <h3>¿Quien Soy?</h3>
           <p>
-            ¡Hola! Soy Gonzalo, un apasionado desarrollador frontend especializado en React. Actualmente, estoy cursando el segundo año de la carrera de Técnico Superior en Desarrollo de Software en el Instituto San Martín, donde he adquirido habilidades sólidas en diversos lenguajes y herramientas.Completé exitosamente la carrera de Frontend React en Coderhouse, donde tuve la oportunidad de aplicar mis conocimientos en proyectos web innovadores. Mi enfoque se centra en seguir aprendiendo y manteniéndome al tanto de las últimas tendencias en tecnología.Busco una oportunidad laboral en una empresa inclusiva y dinámica, donde pueda contribuir con mi experiencia y habilidades. Si deseas conocer más sobre mi experiencia y proyectos, no dudes en contactarme. ¡Espero tener la oportunidad de colaborar juntos!
+            ¡Hola! Soy Gonzalo, un apasionado desarrollador frontend especializado en React. Actualmente, estoy cursando
+            el segundo año de la carrera de Técnico Superior en Desarrollo de Software en el Instituto San Martín, donde
+            he adquirido habilidades sólidas en diversos lenguajes y herramientas.Completé exitosamente la carrera de
+            Frontend React en Coderhouse, donde tuve la oportunidad de aplicar mis conocimientos en proyectos web
+            innovadores. Mi enfoque se centra en seguir aprendiendo y manteniéndome al tanto de las últimas tendencias
+            en tecnología.Busco una oportunidad laboral en una empresa inclusiva y dinámica, donde pueda contribuir con
+            mi experiencia y habilidades. Si deseas conocer más sobre mi experiencia y proyectos, no dudes en
+            contactarme. ¡Espero tener la oportunidad de colaborar juntos!
             <a href="#contact" alt="contact">Hagamos algo especial.</a>
           </p>
           <div id="home2" class="flex-center">
-          <a download="CV-Gonzalo-Romero" href="CV.pdf"><button class="button-home">Descargar CV<i class="fas fa-arrow-right"></i></button></a>
+            <button class="button-home"><a href="CV.pdf" target="_blank" rel="noopener noreferrer">Ver CV</a><i
+                class="fas fa-arrow-right"></i></button>
           </div>
         </div>
         <div class="skills">
+        </div>
+      </div>
+  </section>
+  <section id="education" class="section-education">
+    <div class="wrapper flex-center flex-column">
+      <h2>Educación y Certificados</h2>
+      <div class="timeline">
+        <div class="timeline-items">
+
+          <!-- Item 1: Coderhouse (2022) -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2022</div>
+            <div class="timeline-content">
+              <div class="edu-header">
+                <h3>Coderhouse</h3>
+                <span class="edu-status">Completado</span>
+              </div>
+              <p>Carrera de Desarrollo Frontend React</p>
+              <div class="edu-mods">
+                <span class="chip">Desarrollo Web</span>
+                <span class="chip">JavaScript</span>
+                <span class="chip">React</span>
+                <span class="chip">SASS</span>
+              </div>
+              <div class="edu-certs">
+                <a class="edu-link" href="img/Educacion/frontend.png" target="_blank" rel="noopener"
+                  data-title="Coderhouse - Certificado Final">Ver certificado final</a>
+              </div>
+              <button type="button" class="edu-link edu-more" aria-controls="edu-modal"
+                data-title="Coderhouse - Frontend React"
+                data-desc="Carrera compuesta por módulos de Desarrollo Web, JavaScript y React, con prácticas y proyecto final."
+                data-techs="Desarrollo Web,JavaScript,React,SASS"
+                data-mods="Desarrollo Web|img/Educacion/Desarrollo-web.png;JavaScript|img/Educacion/js-coderrhouse.png;React|img/Educacion/React.png;Certificado Final|img/Educacion/frontend.png">Ver
+                más</button>
+            </div>
+          </div>
+
+          <!-- Item 2: Diplomatura (Abril 2025) -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Abril 2025</div>
+            <div class="timeline-content">
+              <div class="edu-header">
+                <h3>NODO + Univeridad Nacional de Catamarca</h3>
+                <span class="edu-status">Completado</span>
+              </div>
+              <p>Diplomatura Universitaria en Desarrollo Web Full Stack con Javascript </p>
+              <div class="edu-techs">
+                <span class="chip">HTML/CSS</span>
+                <span class="chip">Tailwind</span>
+                <span class="chip">JavaScript</span>
+                <span class="chip">React</span>
+                <span class="chip">Node</span>
+                <span class="chip">MongoDB</span>
+                <span class="chip">Express</span>
+                <span class="chip">SCRUM</span>
+              </div>
+              <div class="edu-certs">
+                <a class="edu-link" href="img/Educacion/Diploma-Universitario.pdf" target="_blank" rel="noopener"
+                  data-title="Diplomado Universitario - Certificado">Ver diploma</a>
+              </div>
+              <button type="button" class="edu-link edu-more" aria-controls="edu-modal"
+                data-title="Diplomado Universitario Full Stack"
+                data-desc="Diplomado universitario en desarrollo web full stack con NODO y UNCA: desde HTML/CSS/Tailwind hasta backend con Node, Express y MongoDB."
+                data-techs="HTML,CSS,Tailwind,JavaScript,React,Node,Express,MongoDB"
+                data-mods="Diploma|img/Educacion/Diploma-Universitario.pdf;Módulo 1|img/Educacion/modulo-1.pdf;Módulo 2|img/Educacion/modulo-2.pdf;Módulo 3|img/Educacion/modulo-3.pdf;Módulo 4|img/Educacion/modulo-4.pdf">Ver
+                más</button>
+            </div>
+          </div>
+
+          <!-- Item 3: Tecnicatura (Diciembre 2025) -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">Diciembre 2025</div>
+            <div class="timeline-content">
+              <div class="edu-header">
+                <h3>Instituto San Martín</h3>
+                <span class="edu-status">Completado</span>
+              </div>
+              <p>Titulo Nacional de Técnico Superior en Desarrollo de Software</p>
+              <div class="edu-techs">
+                <span class="chip">Algoritmos</span>
+                <span class="chip">Diseño de Software</span>
+                <span class="chip">Gestion de Proyectos</span>
+                <span class="chip">Base de datos</span>
+                <span class="chip">PHP</span>
+                <span class="chip">MySQL</span>
+                <span class="chip">SCRUM</span>
+                <span class="chip">I.A</span>
+              </div>
+              <div class="edu-certs">
+                <a class="edu-link" href="CV.pdf" target="_blank" rel="noopener noreferrer">Ver certificado</a>
+              </div>
+              <button type="button" class="edu-link edu-more" aria-controls="edu-modal"
+                data-title="Instituto San Martín"
+                data-desc="Formación en desarrollo y fundamentos: algoritmos, bases de datos relacionales, metodologías ágiles (SCRUM), PHP, MySQL y nociones de I.A."
+                data-techs="PHP,MySQL,Bases de Datos Relacionales,Metodologías Ágiles,SCRUM,Algoritmos,I.A"
+                data-mods="PHP|CV.pdf;MySQL|CV.pdf;Bases de Datos Relacionales|CV.pdf;Metodologías Ágiles|CV.pdf;SCRUM|CV.pdf;Algoritmos|CV.pdf;I.A|CV.pdf">Ver
+                más</button>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
-  <section class="tecnologias">
-    <!-- Tecnologia que uso-->
-    <div class="tecnologias">
-      <div class="slider wrapper">
-          <div class="slide-track">
-              <div class="slide">
-                  <img class="logotecno" src="./img/html-5.png" alt="">
-              </div>
-              <div class="slide">
-                  <img class="logotecno" src="./img/css-3.png" alt="">
-              </div>
-              <div class="slide">
-                  <img class="logotecno" src="./img/sass.png" alt="">
-              </div>
-              <div class="slide">
-                  <img class="logotecno" src="./img/bootstrap.png" alt="">
-              </div>
-              <div class="slide">
-                <img class="logotecno" src="./img/tailwind.png" alt="">
-              </div>
-              <div class="slide">
-                  <img class="logotecno" src="./img/js.png" alt="">
-              </div>
-              <div class="slide">
-                  <img class="logotecno" src="./img/physics.png" alt="">
-              </div>
-              <div class="slide">
-                <img class="logotecno" src="./img/java.png" alt="">
-              </div>
-              <div class="slide">
-                  <img class="logotecno" src="./img/github.png" alt="">
-              </div>
-              <div class="slide">
-                <img class="logotecno" src="./img/mysql.png" alt="">
-              </div>
-              <div class="slide">
-                  <img class="logotecno" src="./img/html-5.png" alt="">
-              </div>
-              <div class="slide">
-                  <img class="logotecno" src="./img/css-3.png" alt="">
-              </div>
-              <div class="slide">
-                  <img class="logotecno" src="./img/sass.png" alt="">
-              </div>
-              <div class="slide">
-                  <img class="logotecno" src="./img/bootstrap.png" alt="">
-              </div>
-              <div class="slide">
-                <img class="logotecno" src="./img/tailwind.png" alt="">
-              </div>
-              <div class="slide">
-                  <img class="logotecno" src="./img/js.png" alt="">
-              </div>
-              <div class="slide">
-                  <img class="logotecno" src="./img/physics.png" alt="">
-              </div>
-              <div class="slide">
-                <img class="logotecno" src="./img/java.png" alt="">
-              </div>
-              <div class="slide">
-                  <img class="logotecno" src="./img/github.png" alt="">
-              </div>
-              <div class="slide">
-                <img class="logotecno" src="./img/mysql.png" alt="">
-              </div>
-          </div>
-      </div>
+  <div id="edu-modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button class="modal-close" aria-label="Cerrar">×</button>
+      <h3 class="modal-title"></h3>
+      <p class="modal-desc"></p>
+      <div class="modal-techs"></div>
+      <div class="modal-mods"></div>
+      <iframe class="modal-frame" title="Vista previa certificado"></iframe>
+    </div>
   </div>
+  <div id="cv-modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-content modal-content-large" role="dialog" aria-modal="true">
+      <button class="modal-close" aria-label="Cerrar">×</button>
+      <h3 class="modal-title">Mi Currículum Vitae</h3>
+      <iframe class="modal-frame" src="" title="Vista previa del CV"></iframe>
+    </div>
+  </div>
+  <section class="tecnologias" id="stack">
+    <div class="wrapper">
+      <h2>Mi Stack Tecnológico</h2>
+      <div class="stack-grid">
+
+        <!-- Frontend -->
+        <div class="stack-category">
+          <h3>Frontend Stack</h3>
+          <div class="stack-cards">
+            <div class="stack-card">
+              <img src="img/tecnologias/html-5.png" alt="HTML5" loading="lazy">
+              <span>HTML</span>
+            </div>
+            <div class="stack-card">
+              <img src="img/tecnologias/css-3.png" alt="CSS3" loading="lazy">
+              <span>CSS</span>
+            </div>
+            <div class="stack-card">
+              <img src="img/tecnologias/tailwind.png" alt="Tailwind" loading="lazy">
+              <span>Tailwind</span>
+            </div>
+            <div class="stack-card">
+              <img src="img/tecnologias/js.png" alt="JavaScript" loading="lazy">
+              <span>JavaScript</span>
+            </div>
+            <div class="stack-card">
+              <img src="img/tecnologias/React.png" alt="React" loading="lazy">
+              <span>React</span>
+            </div>
+            <div class="stack-card">
+              <img src="img/tecnologias/sass.png" alt="SASS" loading="lazy">
+              <span>SASS</span>
+            </div>
+            <div class="stack-card">
+              <img src="img/tecnologias/nextjs-2.svg" alt="Next.js" loading="lazy">
+              <span>Next.js</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Database -->
+        <div class="stack-category">
+          <h3>Base de Datos</h3>
+          <div class="stack-cards">
+            <div class="stack-card">
+              <img src="img/tecnologias/mysql.png" alt="MySQL" loading="lazy">
+              <span>MySQL</span>
+            </div>
+            <div class="stack-card">
+              <img src="img/tecnologias/MongoDB_ForestGreen.png" alt="MongoDB" loading="lazy">
+              <span>MongoDB</span>
+            </div>
+            <div class="stack-card">
+              <img src="img/tecnologias/postgree-sql.png" alt="PostgreSQL" loading="lazy">
+              <span>PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="stack-category">
+          <h3>Backend</h3>
+          <div class="stack-cards">
+            <div class="stack-card">
+              <img src="img/tecnologias/php.png" alt="PHP" loading="lazy">
+              <span>PHP</span>
+            </div>
+            <div class="stack-card">
+              <img src="img/tecnologias/Expressjs.png" alt="Express" loading="lazy">
+              <span>Express</span>
+            </div>
+            <div class="stack-card">
+              <img src="img/tecnologias/supabase.webp" alt="Supabase" loading="lazy">
+              <span>Supabase</span>
+            </div>
+            <div class="stack-card">
+              <img src="img/tecnologias/firebase.png" alt="Firebase" loading="lazy">
+              <span>Firebase</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Version Control -->
+        <div class="stack-category">
+          <h3>Control de Versiones</h3>
+          <div class="stack-cards">
+            <div class="stack-card">
+              <img src="img/tecnologias/gitlogo.png" alt="Git" loading="lazy">
+              <span>Git</span>
+            </div>
+            <div class="stack-card">
+              <img src="img/tecnologias/github.png" alt="GitHub" loading="lazy">
+              <span>GitHub</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </section>
   <section id="portfolio" class="section-portfolio">
     <div class="wrapper flex-center flex-column">
       <h2>PROYECTOS</h2>
 
       <div class="projects-links">
+        <ul>
+          <li><a href="#" data-filter="all">Todos</a></li>
+          <li><a href="#" data-filter="react">React</a></li>
+          <li><a href="#" data-filter="js">JavaScript</a></li>
+          <li><a href="#" data-filter="sass">SASS</a></li>
+          <li class="li-bg">.</li>
+        </ul>
       </div>
 
       <div class="projects-grid flex-center">
 
-        <div class="project" data-tech="react python">
+        <div class="project" data-tech="react js sass html css" data-link="#">
           <div class="flip">
             <div>
               <h4>CTA GAMING React E-Commerce</h4>
               <span>Mi Proyecto final de react para coderhouse con</span>
               <span>HTML / CSS / JS / REACT / SASS</span>
             </div>
-            <button><a target="_blank" class="boton" href="#">Ver</a></button>
+            <button><a target="_blank" class="boton" href="#" rel="noopener noreferrer">Ver</a></button>
           </div>
         </div>
 
-        <div class="project" data-tech="angular python">
+        <div class="project" data-tech="html css sass bootstrap" data-link="https://jmrmarroquineria.netlify.app">
           <div class="flip">
             <div>
               <h4>JMR Marroquineria</h4>
-              <span>Mi primer proyecto web creado para JMR Marroquineria maquetaje con HTML / CSS / SASS / Bootstrap</span>
+              <span>Mi primer proyecto web creado para JMR Marroquineria maquetaje con HTML / CSS / SASS /
+                Bootstrap</span>
             </div>
-            <button><a target="_blank" class="boton" href="https://jmrmarroquineria.netlify.app">Ver</a></button>
+            <button><a target="_blank" class="boton" href="https://jmrmarroquineria.netlify.app"
+                rel="noopener noreferrer">Ver</a></button>
           </div>
         </div>
 
-        <div class="project" data-tech="react ronr aem">
+        <div class="project" data-tech="html css js sass bootstrap" data-link="https://ctagaming.netlify.app">
           <div class="flip">
             <div>
               <h4>CTA GAMING Js E-commerce</h4>
-              <span>Mi proyecto final para el curso de coderhouse de Javascript hecho con HTML / CSS / JS / SASS / Bootstrap</span>
+              <span>Mi proyecto final para el curso de coderhouse de Javascript hecho con HTML / CSS / JS / SASS /
+                Bootstrap</span>
             </div>
-            <button><a target="_blank" class="boton" href="https://ctagaming.netlify.app">Ver</a> </button>
+            <button><a target="_blank" class="boton" href="https://ctagaming.netlify.app"
+                rel="noopener noreferrer">Ver</a> </button>
           </div>
         </div>
 
-        <div class="project" data-tech="react ronr aem">
+        <div class="project" data-tech="html css js" data-link="https://jmr-stock.netlify.app">
           <div class="flip">
             <div>
               <h4>JMR STOCK</h4>
               <span>Proyecto para JMR Marroquineria en donde estan todos sus productos hecho con HTML / CSS / JS </span>
             </div>
-            <button><a target="_blank" class="boton" href="https://jmr-stock.netlify.app">Ver</a> </button>
+            <button><a target="_blank" class="boton" href="https://jmr-stock.netlify.app"
+                rel="noopener noreferrer">Ver</a> </button>
           </div>
         </div>
       </div>
@@ -258,15 +439,16 @@
 
   <section id="contact" class="section-contact flex-center flex-column">
     <h2>CONTACTO</h2>
-    <form action="https://formsubmit.co/gonzalorom2001@gmail.com" method="POST" action="" name="questionsForm">
+    <form action="https://formsubmit.co/gonzalorom2001@gmail.com" method="POST" name="questionsForm">
       <div class="contact-container">
         <h4 class="question">¿Tiene alguna propuesta? Enviala!</h4>
         <div class="form-inputs">
-          <input type="text" placeholder="Nombre" class="name" name="name" />
-          <input type="text" placeholder="E-mail" class="email" name="email" />
-          <textarea rows="7" placeholder="Tu mensaje" class="message" name="comments"></textarea>
+          <input type="text" placeholder="Nombre" class="name" name="name" aria-label="Nombre" required />
+          <input type="email" placeholder="E-mail" class="email" name="email" aria-label="E-mail" required />
+          <textarea rows="7" placeholder="Tu mensaje" class="message" name="comments" aria-label="Mensaje"
+            required></textarea>
           <button type="submit" class="sub-btn">ENVIAR</button>
-          <input type="hidden" name="_next" value="http://127.0.0.1:5500">
+          <input type="hidden" name="_next" value="/">
           <input type="hidden" name="_captcha" value="false">
         </div>
       </div>
@@ -274,24 +456,33 @@
   </section>
 
   <footer>
-    <a href="#home" alt="Up" class="up-link">
+    <a href="#home" aria-label="Subir" class="up-link">
       <div class="up-btn">>></div>
     </a>
     <div class="social-cntr">
-      <a target="_blank" href="https://www.linkedin.com/in/gonzaloromero-/"><div class="flex-center"><i class="iconoir-linkedin"></i></div></a>
-      <a target="_blank" href="https://www.facebook.com/gonzalo.romero.35110/"><div class="flex-center"><i class="iconoir-facebook"></i></div></a>
-      <a target="_blank" href="https://www.instagram.com/gonza.romer0/"><div class="flex-center"><i class="iconoir-instagram"></i></div></a>
-      <a target="_blank" href="https://github.com/Elotickk"><div class="flex-center"><i class="iconoir-github"></i></div></a>
+      <a target="_blank" href="https://www.linkedin.com/in/gonzaloromero-/" rel="noopener noreferrer">
+        <div class="flex-center"><i class="iconoir-linkedin"></i></div>
+      </a>
+      <a target="_blank" href="https://www.facebook.com/gonzalo.romero.35110/" rel="noopener noreferrer">
+        <div class="flex-center"><i class="iconoir-facebook"></i></div>
+      </a>
+      <a target="_blank" href="https://www.instagram.com/gonza.romer0/" rel="noopener noreferrer">
+        <div class="flex-center"><i class="iconoir-instagram"></i></div>
+      </a>
+      <a target="_blank" href="https://github.com/Elotickk" rel="noopener noreferrer">
+        <div class="flex-center"><i class="iconoir-github"></i></div>
+      </a>
     </div>
 
     <h4>
       Hecha por Gonzalo Romero
-        <span class="copyright">
-          & 2022
-        </span>
+      <span class="copyright">
+        & 2022
+      </span>
     </h4>
   </footer>
 
   <script src="./js/script.js"></script>
 </body>
+
 </html>

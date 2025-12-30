@@ -1,0 +1,134 @@
+/* Vertical Timeline Styles */
+.timeline {
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    position: relative;
+}
+
+.timeline-items {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 2rem;
+    /* Initial space for the line */
+}
+
+/* Vertical Line */
+.timeline-items::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15px;
+    /* Center with the 30px dot roughly */
+    width: 4px;
+    height: 100%;
+    background: var(--sd-color);
+    z-index: 1;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 2.5rem;
+    /* Space between line and content */
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    width: 22px;
+    height: 22px;
+    background: var(--thrd-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    /* Align with top of content roughly */
+    left: 6px;
+    /* (15px line left + 2px half-width) - 11px half-dot = ~6px */
+    /* Let's calculate relative to items padding-left (2rem = 32px)
+       Line is at left: 15px.
+       Dot center needs to be at 15px + 2px = 17px.
+       Dot width 22px. Left = 17 - 11 = 6px. Correct.
+    */
+    z-index: 2;
+    border: 3px solid var(--white-color);
+    box-shadow: 0 0 0 2px var(--sd-color);
+}
+
+.timeline-date {
+    display: inline-block;
+    background: var(--sd-color);
+    color: var(--white-color);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+/* 
+   We could position the date to the left of the line on desktop, 
+   but keeping it simple (inline above content) is safer/cleaner for now.
+*/
+
+.timeline-content {
+    background: var(--white-color);
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    color: var(--sxth-color);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease;
+    width: 100%;
+}
+
+.timeline-content:hover {
+    transform: translateX(5px);
+    border-color: var(--sd-color);
+}
+
+.timeline-content .edu-header {
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.timeline-content h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--thrd-color);
+}
+
+.timeline-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Adjust margins for mobile if needed, but this vertical layout is natively responsive */
+@media screen and (max-width: 600px) {
+    .timeline {
+        padding: 0 10px;
+    }
+
+    .timeline-items {
+        padding-left: 10px;
+    }
+
+    .timeline-items::before {
+        left: 20px;
+    }
+
+    .timeline-dot {
+        left: 11px;
+    }
+
+    .timeline-item {
+        padding-left: 3rem;
+    }
+}

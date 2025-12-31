@@ -150,13 +150,51 @@ updateThemeIcon(document.body.classList.contains('dark'))
 const filters = document.querySelectorAll('.projects-links a[data-filter]')
 const liBg = document.querySelector('.projects-links .li-bg')
 const cards = document.querySelectorAll('.projects-grid .project-card')
-filters.forEach((f, idx) => {
+
+// Dynamic Background Logic
+function updateLiBg(targetLink) {
+  if (!liBg || !targetLink) return;
+
+  const parentLi = targetLink.parentElement;
+  const ul = parentLi.parentElement;
+
+  // Get coordinates relative to the UL
+  const ulRect = ul.getBoundingClientRect();
+  const liRect = parentLi.getBoundingClientRect();
+
+  const left = liRect.left - ulRect.left;
+  const top = liRect.top - ulRect.top;
+
+  liBg.style.width = `${liRect.width}px`;
+  liBg.style.height = `${liRect.height}px`;
+  liBg.style.transform = `translate(${left}px, ${top}px)`;
+  liBg.style.opacity = '0.7'; // Show it
+}
+
+// Initial Position
+const initialActive = document.querySelector('.projects-links a[data-filter="all"]');
+if (initialActive) {
+  // Wait for layout to settle
+  window.addEventListener('load', () => {
+    updateLiBg(initialActive);
+    initialActive.classList.add('active'); // Ensure text color is set
+  });
+  // Also try immediately in case load already happened
+  setTimeout(() => updateLiBg(initialActive), 100);
+}
+
+filters.forEach((f) => {
   f.onclick = (e) => {
     e.preventDefault()
-    liBg.classList.remove('margin25', 'margin50', 'margin75')
-    if (idx === 1) liBg.classList.add('margin25')
-    if (idx === 2) liBg.classList.add('margin50')
-    if (idx === 3) liBg.classList.add('margin75')
+
+    // Update active class
+    filters.forEach(link => link.classList.remove('active'))
+    f.classList.add('active')
+
+    // Move background
+    updateLiBg(f)
+
+    // Filter Logic
     const key = f.getAttribute('data-filter')
     cards.forEach(card => {
       const techs = (card.getAttribute('data-tech') || '').split(' ')
@@ -164,6 +202,12 @@ filters.forEach((f, idx) => {
       card.classList.toggle('hide', !show)
     })
   }
+})
+
+// Update on resize
+window.addEventListener('resize', () => {
+  const active = document.querySelector('.projects-links a.active')
+  if (active) updateLiBg(active)
 })
 
 const modal = document.getElementById('project-modal')
@@ -179,18 +223,18 @@ if (modal) {
     const desc = card.getAttribute('data-full-desc') || ''
     const techs = (card.getAttribute('data-tech') || '').split(' ').filter(Boolean)
     const link = card.getAttribute('data-web') || '#'
-    
+
     modalTitle.textContent = title
     modalDesc.textContent = desc
     modalTechs.innerHTML = techs.map(t => `<span class="chip">${t.toUpperCase()}</span>`).join('')
-    
+
     if (link && link !== '#') {
       modalLink.setAttribute('href', link)
       modalLink.style.display = 'inline-block'
     } else {
       modalLink.style.display = 'none'
     }
-    
+
     modal.classList.remove('hidden')
     modal.setAttribute('aria-hidden', 'false')
   }

@@ -149,7 +149,7 @@ updateThemeIcon(document.body.classList.contains('dark'))
 
 const filters = document.querySelectorAll('.projects-links a[data-filter]')
 const liBg = document.querySelector('.projects-links .li-bg')
-const cards = document.querySelectorAll('.projects-grid .project')
+const cards = document.querySelectorAll('.projects-grid .project-card')
 filters.forEach((f, idx) => {
   f.onclick = (e) => {
     e.preventDefault()
@@ -175,15 +175,22 @@ if (modal) {
   const modalClose = modal.querySelector('.modal-close')
 
   function openModalFromCard(card) {
-    const title = card.querySelector('.flip h4')?.textContent || ''
-    const spans = card.querySelectorAll('.flip span')
-    const desc = Array.from(spans).map(s => s.textContent).join(' ')
+    const title = card.querySelector('.card-header h4')?.textContent || ''
+    const desc = card.getAttribute('data-full-desc') || ''
     const techs = (card.getAttribute('data-tech') || '').split(' ').filter(Boolean)
-    const link = card.getAttribute('data-link') || '#'
+    const link = card.getAttribute('data-web') || '#'
+    
     modalTitle.textContent = title
     modalDesc.textContent = desc
     modalTechs.innerHTML = techs.map(t => `<span class="chip">${t.toUpperCase()}</span>`).join('')
-    modalLink.setAttribute('href', link)
+    
+    if (link && link !== '#') {
+      modalLink.setAttribute('href', link)
+      modalLink.style.display = 'inline-block'
+    } else {
+      modalLink.style.display = 'none'
+    }
+    
     modal.classList.remove('hidden')
     modal.setAttribute('aria-hidden', 'false')
   }
@@ -193,10 +200,10 @@ if (modal) {
     modal.setAttribute('aria-hidden', 'true')
   }
 
-  document.querySelectorAll('.projects-grid .project .boton').forEach(btn => {
+  document.querySelectorAll('.projects-grid .project-card .action-btn.info').forEach(btn => {
     btn.onclick = (e) => {
       e.preventDefault()
-      const card = e.target.closest('.project')
+      const card = e.target.closest('.project-card')
       if (card) openModalFromCard(card)
     }
   })

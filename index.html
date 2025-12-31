@@ -10,6 +10,7 @@
   <meta name="theme-color" content="#1b242f" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/timeline.css" />
+  <link rel="stylesheet" href="css/stack.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -264,6 +265,18 @@
       <iframe class="modal-frame" title="Vista previa certificado"></iframe>
     </div>
   </div>
+  <div id="project-modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <button class="modal-close" aria-label="Cerrar">×</button>
+      <h3 class="modal-title"></h3>
+      <p class="modal-desc"></p>
+      <div class="modal-techs"></div>
+      <div class="modal-links">
+        <a href="#" class="modal-link web" target="_blank" rel="noopener">Ver Sitio Web</a>
+        <!-- GitHub link can be added dynamically if needed -->
+      </div>
+    </div>
+  </div>
   <div id="cv-modal" class="modal hidden" aria-hidden="true">
     <div class="modal-content modal-content-large" role="dialog" aria-modal="true">
       <button class="modal-close" aria-label="Cerrar">×</button>
@@ -305,7 +318,7 @@
               <span>SASS</span>
             </div>
             <div class="stack-card">
-              <img src="img/tecnologias/nextjs-2.svg" alt="Next.js" loading="lazy">
+              <img src="img/tecnologias/next-js.svg" alt="Next.js" loading="lazy">
               <span>Next.js</span>
             </div>
           </div>
@@ -385,53 +398,99 @@
         </ul>
       </div>
 
+
       <div class="projects-grid flex-center">
 
-        <div class="project" data-tech="react js sass html css" data-link="#">
-          <div class="flip">
-            <div>
-              <h4>CTA GAMING React E-Commerce</h4>
-              <span>Mi Proyecto final de react para coderhouse con</span>
-              <span>HTML / CSS / JS / REACT / SASS</span>
+        <!-- Project 1 -->
+        <div class="project-card" data-tech="react js sass html css" data-github="#" data-web="#"
+          data-status="Completado"
+          data-full-desc="Mi Proyecto final de React para Coderhouse. Desarrollado con HTML, CSS, JavaScript, React y SASS. E-commerce funcional con carrito de compras y catálogo.">
+          <div class="card-image">
+            <img src="img/proyectos/banner.png" alt="CTA GAMING React" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-header">
+              <h4>CTA GAMING React</h4>
+              <span class="status-badge completed">Completado</span>
             </div>
-            <button><a target="_blank" class="boton" href="#" rel="noopener noreferrer">Ver</a></button>
+            <p class="card-short-desc">E-commerce de productos gaming desarrollado en React.js.</p>
+            <div class="card-actions">
+              <a href="https://github.com/gonza-rom/ReactEcommerceProyectoFinal" target="_blank" class="action-btn github" aria-label="Ver Código en GitHub"><i
+                  class="iconoir-github"></i></a>
+              <button class="action-btn info" aria-label="Más información">Ver más</button>
+            </div>
           </div>
         </div>
 
-        <div class="project" data-tech="html css sass bootstrap" data-link="https://jmrmarroquineria.netlify.app">
-          <div class="flip">
-            <div>
+        <!-- Project 2 -->
+        <div class="project-card" data-tech="html css sass bootstrap" data-github="#"
+          data-web="https://jmrmarroquineria.netlify.app" data-status="Completado"
+          data-full-desc="Mi primer proyecto web creado para JMR Marroquinería. Maquetado responsivo utilizando HTML, CSS, SASS y Bootstrap.">
+          <div class="card-image">
+            <img src="img/proyectos/banner2.png" alt="JMR Marroquineria" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-header">
               <h4>JMR Marroquineria</h4>
-              <span>Mi primer proyecto web creado para JMR Marroquineria maquetaje con HTML / CSS / SASS /
-                Bootstrap</span>
+              <span class="status-badge completed">Completado</span>
             </div>
-            <button><a target="_blank" class="boton" href="https://jmrmarroquineria.netlify.app"
-                rel="noopener noreferrer">Ver</a></button>
+            <p class="card-short-desc">Mi primera pagina web a modo de ejemplo para JMR Marroquinería.</p>
+            <div class="card-actions">
+              <a href="https://github.com/gonza-rom/Proyecto-Final-Desarrolo-Web-Coder" target="_blank" class="action-btn github" aria-label="Ver Código en GitHub"><i
+                  class="iconoir-github"></i></a>
+              <a href="https://jmrmarroquineria.netlify.app" target="_blank" class="action-btn web"
+                aria-label="Ver Sitio Web"><i class="iconoir-internet"></i></a>
+              <button class="action-btn info" aria-label="Más información">Ver más</button>
+            </div>
           </div>
         </div>
 
-        <div class="project" data-tech="html css js sass bootstrap" data-link="https://ctagaming.netlify.app">
-          <div class="flip">
-            <div>
-              <h4>CTA GAMING Js E-commerce</h4>
-              <span>Mi proyecto final para el curso de coderhouse de Javascript hecho con HTML / CSS / JS / SASS /
-                Bootstrap</span>
+        <!-- Project 3 -->
+        <div class="project-card" data-tech="html css js sass bootstrap" data-github="https://github.com/gonza-rom/ProyectoCoderJavascript"
+          data-web="https://ctagaming.netlify.app" data-status="Completado"
+          data-full-desc="Proyecto final para el curso de JavaScript de Coderhouse. E-commerce con lógica de carrito y stock hecha en Vanilla JS.">
+          <div class="card-image">
+            <img src="img/proyectos/banner3.png" alt="CTA GAMING Js" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-header">
+              <h4>CTA GAMING Js</h4>
+              <span class="status-badge completed">Completado</span>
             </div>
-            <button><a target="_blank" class="boton" href="https://ctagaming.netlify.app"
-                rel="noopener noreferrer">Ver</a> </button>
+            <p class="card-short-desc">E-commerce JS Vanilla con carrito de compras.</p>
+            <div class="card-actions">
+              <a href="https://github.com/gonza-rom/ProyectoCoderJavascript" target="_blank" class="action-btn github" aria-label="Ver Código en GitHub"><i
+                  class="iconoir-github"></i></a>
+              <a href="https://ctagaming.netlify.app" target="_blank" class="action-btn web"
+                aria-label="Ver Sitio Web"><i class="iconoir-internet"></i></a>
+              <button class="action-btn info" aria-label="Más información">Ver más</button>
+            </div>
           </div>
         </div>
 
-        <div class="project" data-tech="html css js" data-link="https://jmr-stock.netlify.app">
-          <div class="flip">
-            <div>
+        <!-- Project 4 -->
+        <div class="project-card" data-tech="html css js" data-github="https://github.com/gonza-rom/StockJMRJavaScript" data-web="https://jmr-stock.netlify.app"
+          data-status="Completado"
+          data-full-desc="Sistema de gestión de inventario para JMR Marroquinería. Permite visualizar el stock de productos en tiempo real.">
+          <div class="card-image">
+            <img src="img/proyectos/banner4.png" alt="JMR STOCK" loading="lazy">
+          </div>
+          <div class="card-content">
+            <div class="card-header">
               <h4>JMR STOCK</h4>
-              <span>Proyecto para JMR Marroquineria en donde estan todos sus productos hecho con HTML / CSS / JS </span>
+              <span class="status-badge completed">Completado</span>
             </div>
-            <button><a target="_blank" class="boton" href="https://jmr-stock.netlify.app"
-                rel="noopener noreferrer">Ver</a> </button>
+            <p class="card-short-desc">Gestor de stock para control de inventario.</p>
+            <div class="card-actions">
+              <a href="https://github.com/gonza-rom/StockJMRJavaScript" target="_blank" class="action-btn github" aria-label="Ver Código en GitHub"><i
+                  class="iconoir-github"></i></a>
+              <a href="https://jmr-stock.netlify.app" target="_blank" class="action-btn web"
+                aria-label="Ver Sitio Web"><i class="iconoir-internet"></i></a>
+              <button class="action-btn info" aria-label="Más información">Ver más</button>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>

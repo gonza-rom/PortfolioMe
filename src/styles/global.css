@@ -6,7 +6,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter Variable', 'Inter', system-ui, sans-serif;
   }
 
   body {

@@ -13,8 +13,8 @@ electron/
 forge.config.js
 out/
 dist/
-/.claude/
-/.astro/
+.claude/
+.astro/
 
 # testing
 /coverage

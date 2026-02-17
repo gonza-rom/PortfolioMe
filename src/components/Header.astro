@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logoSrc from '../assets/logo.png';
+
 const navLinks = [
   { href: '#home', label: 'Inicio' },
   { href: '#about', label: 'Sobre mí' },
@@ -18,9 +21,13 @@ const navLinks = [
 
       <!-- Logo -->
       <a href="#home" aria-label="Inicio">
-        <img
-          src="/img/logo.png"
+        <Image
+          src={logoSrc}
           alt="Gonzalo Romero"
+          width={140}
+          height={112}
+          format="webp"
+          quality={90}
           class="h-14 w-auto object-contain"
         />
       </a>

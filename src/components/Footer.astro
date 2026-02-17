@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logoSrc from '../assets/logo.png';
+
 const social = [
   { href: 'https://www.linkedin.com/in/gonzaloromero-/', icon: 'iconoir-linkedin', label: 'LinkedIn' },
   { href: 'https://github.com/Elotickk', icon: 'iconoir-github', label: 'GitHub' },
@@ -16,9 +19,13 @@ const year = new Date().getFullYear();
 
       <!-- Brand -->
       <a href="#home" aria-label="Inicio">
-        <img
-          src="/img/logo.png"
+        <Image
+          src={logoSrc}
           alt="Gonzalo Romero"
+          width={140}
+          height={112}
+          format="webp"
+          quality={90}
           class="h-14 w-auto object-contain"
         />
       </a>

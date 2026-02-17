@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import fotocvSrc from '../assets/fotocv.jpg';
+
 const qualities = [
   {
     icon: 'iconoir-community',
@@ -57,10 +60,13 @@ const qualities = [
         <div class="relative">
           <div class="w-52 h-52 md:w-64 md:h-64 rounded-3xl overflow-hidden
                       border-4 border-accent/30 shadow-2xl shadow-accent/20">
-            <img
-              src="/img/fotocv.jpg"
+            <Image
+              src={fotocvSrc}
               alt="Gonzalo Romero"
-              loading="lazy"
+              width={512}
+              height={512}
+              format="webp"
+              quality={85}
               class="w-full h-full object-cover"
             />
           </div>

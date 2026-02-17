@@ -1,0 +1,146 @@
+---
+import { education } from '../data/education';
+const eduJson = JSON.stringify(
+  education.map(({ modalTitle, modalDesc, modules }) => ({ modalTitle, modalDesc, modules }))
+);
+---
+
+<section id="education" class="py-24 bg-gray-50 dark:bg-surface-dark-card">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <h2 class="section-title reveal">Educación y Certificados</h2>
+
+    <!-- Timeline -->
+    <div class="relative pl-8 border-l-2 border-gray-200 dark:border-gray-700 space-y-12">
+      {education.map((item, i) => (
+        <div class="reveal relative">
+          <!-- Dot -->
+          <div class="absolute -left-[41px] w-5 h-5 rounded-full bg-accent border-4 border-white dark:border-surface-dark-card shadow-md shadow-accent/30"></div>
+
+          <!-- Card -->
+          <div class="bg-white dark:bg-surface-dark rounded-2xl p-6
+                      border border-gray-200 dark:border-surface-dark-border
+                      hover:border-accent/40 hover:shadow-lg hover:shadow-accent/10
+                      transition-all duration-300">
+
+            <!-- Date badge -->
+            <span class="inline-block text-xs font-bold text-accent bg-accent/10 px-3 py-1 rounded-full mb-3">
+              {item.year}
+            </span>
+
+            <!-- Header -->
+            <div class="flex items-start justify-between gap-4 mb-2">
+              <h3 class="text-lg font-bold text-gray-800 dark:text-white">{item.institution}</h3>
+              <span class={`flex-shrink-0 text-xs font-semibold px-2.5 py-1 rounded-full
+                ${item.status === 'Completado'
+                  ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
+                  : item.status === 'En trámite'
+                  ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400'
+                  : 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400'
+                }`}>
+                {item.status}
+              </span>
+            </div>
+
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">{item.title}</p>
+
+            <!-- Chips -->
+            <div class="flex flex-wrap gap-2 mb-4">
+              {item.chips.map(chip => (
+                <span class="chip">{chip}</span>
+              ))}
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-wrap gap-3">
+              {item.certLink && (
+                <a
+                  href={item.certLink.url}
+                  target="_blank"
+                  rel="noopener"
+                  class="inline-flex items-center gap-1.5 text-sm text-accent font-medium hover:underline"
+                >
+                  <i class="iconoir-page-star text-base"></i>
+                  {item.certLink.label}
+                </a>
+              )}
+              <button
+                class="edu-more-btn inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400
+                       hover:text-accent dark:hover:text-accent font-medium transition-colors"
+                data-index={String(i)}
+                aria-haspopup="dialog"
+              >
+                <i class="iconoir-expand text-base"></i>
+                Ver más
+              </button>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<!-- Embedded data for client -->
+<script type="application/json" id="edu-data" set:html={eduJson}></script>
+
+<!-- Education Modal -->
+<div id="edu-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-box">
+    <button id="edu-modal-close"
+      class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center
+             rounded-lg text-gray-400 hover:text-gray-700 dark:hover:text-white
+             hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
+      aria-label="Cerrar">
+      <i class="iconoir-cancel text-lg"></i>
+    </button>
+    <h3 id="edu-modal-title" class="text-xl font-bold text-gray-800 dark:text-white mb-2 pr-8"></h3>
+    <p id="edu-modal-desc" class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4"></p>
+    <div id="edu-modal-mods" class="flex flex-col gap-2"></div>
+  </div>
+</div>
+
+<script>
+  const rawData = document.getElementById('edu-data')?.textContent ?? '[]';
+  const educationData: { modalTitle: string; modalDesc: string; modules: { name: string; url: string }[] }[] =
+    JSON.parse(rawData);
+
+  const modal = document.getElementById('edu-modal')!;
+  const modalTitle = document.getElementById('edu-modal-title')!;
+  const modalDesc = document.getElementById('edu-modal-desc')!;
+  const modalMods = document.getElementById('edu-modal-mods')!;
+  const closeBtn = document.getElementById('edu-modal-close')!;
+
+  function openEduModal(index: number) {
+    const item = educationData[index];
+    if (!item) return;
+    modalTitle.textContent = item.modalTitle;
+    modalDesc.textContent = item.modalDesc;
+    modalMods.innerHTML = item.modules
+      .map(
+        m => `<a href="${m.url}" target="_blank" rel="noopener"
+          class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium
+                 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300
+                 hover:bg-accent hover:text-white transition-all duration-200">
+          <i class="iconoir-page text-base"></i>${m.name}</a>`
+      )
+      .join('');
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+  }
+
+  function closeEduModal() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.edu-more-btn').forEach(btn => {
+    btn.addEventListener('click', () => openEduModal(Number(btn.dataset.index)));
+  });
+  closeBtn.addEventListener('click', closeEduModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeEduModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeEduModal(); });
+</script>

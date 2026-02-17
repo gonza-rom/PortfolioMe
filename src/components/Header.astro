@@ -1,0 +1,178 @@
+---
+const navLinks = [
+  { href: '#home', label: 'Inicio' },
+  { href: '#about', label: 'Sobre mí' },
+  { href: '#experience', label: 'Experiencia' },
+  { href: '#education', label: 'Educación' },
+  { href: '#portfolio', label: 'Proyectos' },
+  { href: '#contact', label: 'Contacto' },
+];
+---
+
+<header
+  id="main-header"
+  class="fixed top-0 left-0 right-0 z-40 transition-all duration-300"
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <a href="#home" aria-label="Inicio">
+        <img
+          src="/img/logo.png"
+          alt="Gonzalo Romero"
+          class="h-14 w-auto object-contain"
+        />
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-1">
+        {navLinks.map(({ href, label }) => (
+          <a
+            href={href}
+            class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300
+                   hover:text-accent dark:hover:text-accent hover:bg-accent/5 transition-all duration-200"
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Right controls -->
+      <div class="flex items-center gap-2">
+        <!-- Theme toggle -->
+        <button
+          id="theme-toggle"
+          aria-label="Cambiar tema"
+          class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-accent dark:hover:text-accent
+                 hover:bg-accent/5 transition-all duration-200"
+        >
+          <i class="iconoir-sun-light text-xl hidden dark:block"></i>
+          <i class="iconoir-half-moon text-xl block dark:hidden"></i>
+        </button>
+
+        <!-- Hamburger (mobile) -->
+        <button
+          id="hamburger"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          class="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-accent transition-all duration-200"
+        >
+          <span class="block w-5 h-0.5 bg-current mb-1 transition-all duration-300 origin-center" id="bar1"></span>
+          <span class="block w-5 h-0.5 bg-current mb-1 transition-all duration-300" id="bar2"></span>
+          <span class="block w-5 h-0.5 bg-current transition-all duration-300 origin-center" id="bar3"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="md:hidden max-h-0 overflow-hidden transition-all duration-300
+           bg-white/95 dark:bg-surface-dark/95 backdrop-blur-md border-t border-gray-200/50 dark:border-gray-700/50"
+  >
+    <nav class="px-4 py-3 flex flex-col gap-1">
+      {navLinks.map(({ href, label }) => (
+        <a
+          href={href}
+          class="mobile-nav-link px-4 py-3 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300
+                 hover:text-accent dark:hover:text-accent hover:bg-accent/5 transition-all duration-200"
+        >
+          {label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  // ─── Theme toggle ─────────────────────────────────────────
+  const themeToggle = document.getElementById('theme-toggle');
+  themeToggle?.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+
+  // ─── Hamburger menu ───────────────────────────────────────
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const bar1 = document.getElementById('bar1');
+  const bar2 = document.getElementById('bar2');
+  const bar3 = document.getElementById('bar3');
+
+  hamburger?.addEventListener('click', () => {
+    const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', String(!isOpen));
+
+    if (!isOpen) {
+      mobileMenu!.style.maxHeight = mobileMenu!.scrollHeight + 'px';
+      bar1!.style.transform = 'translateY(6px) rotate(45deg)';
+      bar2!.style.opacity = '0';
+      bar3!.style.transform = 'translateY(-6px) rotate(-45deg)';
+    } else {
+      mobileMenu!.style.maxHeight = '0';
+      bar1!.style.transform = '';
+      bar2!.style.opacity = '1';
+      bar3!.style.transform = '';
+    }
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu!.style.maxHeight = '0';
+      hamburger!.setAttribute('aria-expanded', 'false');
+      bar1!.style.transform = '';
+      bar2!.style.opacity = '1';
+      bar3!.style.transform = '';
+    });
+  });
+
+  // ─── Scroll: header background + active nav link ──────────
+  const header = document.getElementById('main-header');
+  const sections = document.querySelectorAll<HTMLElement>('section[id], div[id="main-nav"]');
+
+  function updateHeader() {
+    if (window.scrollY > 20) {
+      header!.classList.add('bg-white/90', 'dark:bg-surface-dark/90', 'backdrop-blur-md', 'shadow-lg', 'border-b', 'border-gray-200/50', 'dark:border-gray-700/50');
+    } else {
+      header!.classList.remove('bg-white/90', 'dark:bg-surface-dark/90', 'backdrop-blur-md', 'shadow-lg', 'border-b', 'border-gray-200/50', 'dark:border-gray-700/50');
+    }
+  }
+
+  function updateActiveLink() {
+    let current = '';
+    document.querySelectorAll<HTMLElement>('section[id]').forEach(section => {
+      if (window.scrollY >= section.offsetTop - 100) {
+        current = section.id;
+      }
+    });
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      const href = link.getAttribute('href')?.slice(1);
+      if (href === current) {
+        link.classList.add('text-accent', 'bg-accent/10');
+        link.classList.remove('text-gray-600', 'dark:text-gray-300');
+      } else {
+        link.classList.remove('text-accent', 'bg-accent/10');
+        link.classList.add('text-gray-600', 'dark:text-gray-300');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    updateHeader();
+    updateActiveLink();
+  }, { passive: true });
+
+  updateHeader();
+
+  // ─── Scroll reveal ────────────────────────────────────────
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')),
+    { threshold: 0.12 }
+  );
+  revealEls.forEach(el => observer.observe(el));
+</script>

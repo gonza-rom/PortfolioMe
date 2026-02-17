@@ -1,0 +1,99 @@
+---
+import { stack } from '../data/stack';
+import * as si from 'simple-icons';
+
+// Build-time icon map — SVGs inlined at build time, zero runtime image requests
+const iconMap: Record<string, { svg: string; hex: string }> = {
+  siHtml5:       (si as any).siHtml5,
+  siCss:         (si as any).siCss,          // v16: siCss (not siCss3)
+  siTailwindcss: (si as any).siTailwindcss,
+  siJavascript:  (si as any).siJavascript,
+  siTypescript:  (si as any).siTypescript,
+  siReact:       (si as any).siReact,
+  siSass:        (si as any).siSass,
+  siNextdotjs:   (si as any).siNextdotjs,
+  siAstro:       (si as any).siAstro,
+  siMysql:       (si as any).siMysql,
+  siMongodb:     (si as any).siMongodb,
+  siPostgresql:  (si as any).siPostgresql,
+  siSupabase:    (si as any).siSupabase,
+  siNodedotjs:   (si as any).siNodedotjs,
+  siPhp:         (si as any).siPhp,
+  siExpress:     (si as any).siExpress,
+  siFirebase:    (si as any).siFirebase,
+  siGit:         (si as any).siGit,
+  siGithub:      (si as any).siGithub,
+  siVercel:      (si as any).siVercel,
+  siPrisma:      (si as any).siPrisma,
+};
+
+// Use fill="currentColor" so CSS can control color in dark/light mode
+function renderIcon(siKey: string): { svg: string; hex: string } | null {
+  const icon = iconMap[siKey];
+  if (!icon) return null;
+  const svg = icon.svg.replace('<svg ', '<svg width="22" height="22" fill="currentColor" ');
+  return { svg, hex: icon.hex };
+}
+---
+
+<section id="stack" class="py-24 bg-white dark:bg-surface-dark">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <h2 class="section-title reveal">Mi Stack Tecnológico</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      {stack.map(category => (
+        <div class="reveal">
+          <h3 class="text-xs font-bold uppercase tracking-widest text-accent mb-4 pb-2
+                     border-b border-gray-200 dark:border-gray-700">
+            {category.title}
+          </h3>
+
+          <div class="flex flex-col gap-2">
+            {category.techs.map(tech => {
+              const icon = renderIcon(tech.si);
+              return (
+                <div class="group flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-default
+                            bg-gray-50 dark:bg-surface-dark-card
+                            border border-gray-200 dark:border-surface-dark-border
+                            hover:border-accent/40 hover:bg-accent/5 dark:hover:bg-accent/5
+                            hover:shadow-sm transition-all duration-200">
+
+                  {/* Icon: brand color in light, white in dark via CSS */}
+                  <span
+                    class="stack-icon flex-shrink-0 w-[22px] h-[22px]"
+                    style={icon ? `color: #${icon.hex}` : ''}
+                    set:html={icon?.svg ?? ''}
+                  />
+
+                  <span class="text-sm font-medium text-gray-700 dark:text-gray-300
+                               group-hover:text-accent dark:group-hover:text-accent transition-colors">
+                    {tech.name}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /*
+   * Light mode: icon uses brand color (from inline style → currentColor → fill)
+   * Dark mode:  override color to soft white so all icons are legible on dark cards
+   */
+  :global(.dark) .stack-icon {
+    color: rgba(255, 255, 255, 0.82) !important;
+  }
+
+  /* Ensure the injected SVG fills the container */
+  .stack-icon :global(svg) {
+    display: block;
+    width: 22px;
+    height: 22px;
+  }
+</style>

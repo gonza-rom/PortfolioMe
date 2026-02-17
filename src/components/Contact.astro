@@ -1,0 +1,177 @@
+---
+---
+
+<section id="contact" class="py-24 bg-white dark:bg-surface-dark">
+  <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <h2 class="section-title reveal">Contacto</h2>
+
+    <div class="reveal bg-gray-50 dark:bg-surface-dark-card rounded-3xl p-8
+                border border-gray-200 dark:border-surface-dark-border shadow-xl shadow-gray-200/50 dark:shadow-black/20">
+
+      <p class="text-center text-gray-600 dark:text-gray-400 mb-8">
+        ¿Tenés una propuesta o querés trabajar juntos? <br class="hidden sm:block" />
+        <span class="text-gray-800 dark:text-white font-medium">¡Enviame un mensaje!</span>
+      </p>
+
+      <form
+        id="contact-form"
+        action="https://formsubmit.co/gonzalorom2001@gmail.com"
+        method="POST"
+        novalidate
+        class="space-y-5"
+      >
+        <input type="hidden" name="_next" value="/" />
+        <input type="hidden" name="_captcha" value="false" />
+
+        <!-- Name -->
+        <div>
+          <label for="contact-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+            Nombre
+          </label>
+          <input
+            id="contact-name"
+            type="text"
+            name="name"
+            placeholder="Tu nombre completo"
+            autocomplete="name"
+            class="w-full px-4 py-3 rounded-xl bg-white dark:bg-surface-dark
+                   border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100
+                   placeholder-gray-400 dark:placeholder-gray-500
+                   focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent
+                   transition-all duration-200"
+          />
+          <p class="field-error hidden mt-1 text-xs text-red-500" id="name-error"></p>
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label for="contact-email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+            E-mail
+          </label>
+          <input
+            id="contact-email"
+            type="email"
+            name="email"
+            placeholder="tu@email.com"
+            autocomplete="email"
+            class="w-full px-4 py-3 rounded-xl bg-white dark:bg-surface-dark
+                   border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100
+                   placeholder-gray-400 dark:placeholder-gray-500
+                   focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent
+                   transition-all duration-200"
+          />
+          <p class="field-error hidden mt-1 text-xs text-red-500" id="email-error"></p>
+        </div>
+
+        <!-- Message -->
+        <div>
+          <label for="contact-message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+            Mensaje
+          </label>
+          <textarea
+            id="contact-message"
+            name="comments"
+            rows="5"
+            placeholder="Contame sobre tu proyecto o propuesta..."
+            class="w-full px-4 py-3 rounded-xl bg-white dark:bg-surface-dark
+                   border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100
+                   placeholder-gray-400 dark:placeholder-gray-500
+                   focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent
+                   transition-all duration-200 resize-none"
+          ></textarea>
+          <p class="field-error hidden mt-1 text-xs text-red-500" id="message-error"></p>
+        </div>
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          id="submit-btn"
+          class="w-full py-3.5 px-6 rounded-xl bg-accent text-white font-semibold text-sm
+                 hover:bg-accent-dark active:scale-[0.98]
+                 transition-all duration-200 shadow-lg shadow-accent/25
+                 disabled:opacity-60 disabled:cursor-not-allowed
+                 flex items-center justify-center gap-2"
+        >
+          <span id="submit-text">Enviar mensaje</span>
+          <i class="iconoir-send-diagonal text-lg"></i>
+        </button>
+
+        <!-- Status message -->
+        <p id="form-status" class="hidden text-center text-sm font-medium"></p>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const submitText = document.getElementById('submit-text')!;
+  const formStatus = document.getElementById('form-status')!;
+
+  const nameInput = document.getElementById('contact-name') as HTMLInputElement;
+  const emailInput = document.getElementById('contact-email') as HTMLInputElement;
+  const messageInput = document.getElementById('contact-message') as HTMLTextAreaElement;
+
+  const nameError = document.getElementById('name-error')!;
+  const emailError = document.getElementById('email-error')!;
+  const messageError = document.getElementById('message-error')!;
+
+  function showError(el: HTMLElement, msg: string) {
+    el.textContent = msg;
+    el.classList.remove('hidden');
+  }
+  function clearError(el: HTMLElement) {
+    el.textContent = '';
+    el.classList.add('hidden');
+  }
+
+  function validate(): boolean {
+    let valid = true;
+    clearError(nameError);
+    clearError(emailError);
+    clearError(messageError);
+
+    if (nameInput.value.trim().length < 2) {
+      showError(nameError, 'El nombre debe tener al menos 2 caracteres.');
+      valid = false;
+    }
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRe.test(emailInput.value.trim())) {
+      showError(emailError, 'Ingresá un e-mail válido.');
+      valid = false;
+    }
+    if (messageInput.value.trim().length < 10) {
+      showError(messageError, 'El mensaje debe tener al menos 10 caracteres.');
+      valid = false;
+    }
+    return valid;
+  }
+
+  form.addEventListener('submit', async e => {
+    if (!validate()) {
+      e.preventDefault();
+      return;
+    }
+    // Let the form submit normally to formsubmit.co
+    submitBtn.disabled = true;
+    submitText.textContent = 'Enviando...';
+  });
+
+  // Inline field validation on blur
+  nameInput.addEventListener('blur', () => {
+    if (nameInput.value.trim().length < 2) showError(nameError, 'El nombre debe tener al menos 2 caracteres.');
+    else clearError(nameError);
+  });
+  emailInput.addEventListener('blur', () => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!re.test(emailInput.value.trim())) showError(emailError, 'Ingresá un e-mail válido.');
+    else clearError(emailError);
+  });
+  messageInput.addEventListener('blur', () => {
+    if (messageInput.value.trim().length < 10) showError(messageError, 'El mensaje debe tener al menos 10 caracteres.');
+    else clearError(messageError);
+  });
+</script>

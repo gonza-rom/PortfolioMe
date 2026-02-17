@@ -1,0 +1,119 @@
+---
+const qualities = [
+  {
+    icon: 'iconoir-community',
+    title: 'Trabajo en Equipo',
+    desc: 'Siempre me gustó trabajar en equipo, ¡cuantos más somos, es mejor!',
+  },
+  {
+    icon: 'iconoir-task-list',
+    title: 'Responsabilidad',
+    desc: 'Estar atento en cada tarea para lograrla en tiempo y forma.',
+  },
+  {
+    icon: 'iconoir-group',
+    title: 'Empatía',
+    desc: 'Ayudar a mi equipo en cada cosa que necesiten, siempre trato de entender al otro.',
+  },
+  {
+    icon: 'iconoir-accessibility',
+    title: 'Flexibilidad',
+    desc: 'Soy capaz de adaptarme a diversas circunstancias que se presenten.',
+  },
+];
+---
+
+<section id="about" class="py-24 bg-white dark:bg-surface-dark">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Heading -->
+    <h2 class="section-title reveal">Sobre mí</h2>
+
+    <!-- Quality cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-20">
+      {qualities.map(({ icon, title, desc }) => (
+        <div class="reveal group flex flex-col items-center text-center p-6 rounded-2xl
+                    bg-gray-50 dark:bg-surface-dark-card
+                    border border-gray-200/80 dark:border-surface-dark-border
+                    hover:border-accent/50 hover:shadow-lg hover:shadow-accent/10
+                    transition-all duration-300">
+          <div class="w-14 h-14 flex items-center justify-center rounded-2xl
+                      bg-accent/10 text-accent mb-4
+                      group-hover:bg-accent group-hover:text-white
+                      transition-all duration-300">
+            <i class={`${icon} text-2xl`}></i>
+          </div>
+          <h3 class="font-semibold text-gray-800 dark:text-white mb-2">{title}</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bio + photo -->
+    <div class="flex flex-col lg:flex-row items-center gap-12">
+
+      <!-- Photo -->
+      <div class="reveal flex-shrink-0">
+        <div class="relative">
+          <div class="w-52 h-52 md:w-64 md:h-64 rounded-3xl overflow-hidden
+                      border-4 border-accent/30 shadow-2xl shadow-accent/20">
+            <img
+              src="/img/fotocv.jpg"
+              alt="Gonzalo Romero"
+              loading="lazy"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <!-- Decorative dot -->
+          <div class="absolute -bottom-3 -right-3 w-8 h-8 rounded-full bg-accent shadow-lg shadow-accent/40"></div>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="reveal flex-1">
+        <h3 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-4">
+          ¿Quién soy?
+        </h3>
+        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+          ¡Hola! Soy <strong class="text-gray-800 dark:text-white">Gonzalo</strong>, un apasionado desarrollador
+          Full Stack especializado en React. Actualmente completé la carrera de Técnico Superior en
+          Desarrollo de Software en el Instituto San Martín, donde adquirí habilidades sólidas en
+          diversos lenguajes y herramientas.
+        </p>
+        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+          Completé exitosamente la carrera de Frontend React en Coderhouse y la Diplomatura
+          Universitaria Full Stack con NODO + UNCA. Mi enfoque se centra en seguir aprendiendo y
+          mantenerme al tanto de las últimas tendencias. Busco oportunidades en empresas inclusivas y
+          dinámicas.{' '}
+          <a href="#contact" class="text-accent hover:underline font-medium">
+            Hagamos algo especial.
+          </a>
+        </p>
+
+        <!-- Actions -->
+        <div class="flex flex-wrap gap-3">
+          <a
+            href="/CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-accent text-white font-semibold
+                   hover:bg-accent-dark transition-all duration-300 shadow-lg shadow-accent/25 hover:-translate-y-0.5"
+          >
+            <i class="iconoir-page text-lg"></i>
+            Ver CV
+          </a>
+          <a
+            href="#contact"
+            class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl
+                   border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold
+                   hover:border-accent hover:text-accent dark:hover:border-accent dark:hover:text-accent
+                   transition-all duration-300"
+          >
+            Contactame
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

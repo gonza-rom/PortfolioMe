@@ -1,0 +1,120 @@
+---
+---
+
+<section
+  id="home"
+  class="relative flex items-center justify-center min-h-screen overflow-hidden"
+>
+  <!-- Video background -->
+  <video
+    muted
+    autoplay
+    loop
+    playsinline
+    preload="metadata"
+    aria-hidden="true"
+    class="absolute inset-0 w-full h-full object-cover"
+  >
+    <source src="/img/scene-rainbow (1)-2x-RIFE-RIFE23-50fps.mp4" type="video/mp4" />
+  </video>
+
+  <!-- Gradient overlay -->
+  <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+    <p class="font-semibold text-sm md:text-base tracking-widest uppercase mb-4 animate-fade-in
+              text-white/70 flex items-center justify-center gap-2">
+      <span class="text-accent" id="typewriter-text">Full Stack Developer</span>
+      <span class="typewriter-cursor text-accent">|</span>
+    </p>
+    <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6 animate-slide-up">
+      Hola, soy<br />
+      <span class="text-accent">Gonzalo Romero</span>
+    </h1>
+    <p class="text-gray-300 text-lg md:text-xl mb-10 max-w-xl mx-auto animate-fade-in">
+      Construyo aplicaciones web modernas, rápidas y escalables.
+    </p>
+    <div class="flex flex-wrap items-center justify-center gap-4 animate-fade-in">
+      <a
+        href="#about"
+        class="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-accent text-white font-semibold
+               hover:bg-accent-dark transition-all duration-300 shadow-lg hover:shadow-accent/30 hover:-translate-y-0.5"
+      >
+        Sobre mí
+        <i class="iconoir-arrow-right text-lg"></i>
+      </a>
+      <a
+        href="#portfolio"
+        class="inline-flex items-center gap-2 px-7 py-3 rounded-xl border border-white/30 text-white font-semibold
+               hover:bg-white/10 hover:border-white/60 transition-all duration-300 backdrop-blur-sm"
+      >
+        Ver proyectos
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <a href="#about" aria-label="Ir a la siguiente sección">
+      <i class="iconoir-arrow-down text-2xl text-white/60 hover:text-white transition-colors"></i>
+    </a>
+  </div>
+</section>
+
+<style>
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  .typewriter-cursor {
+    animation: blink 1s step-end infinite;
+    font-weight: 300;
+  }
+</style>
+
+<script>
+  const roles = [
+    'Full Stack Developer',
+    'Next.js Developer',
+    'React Developer',
+    'TypeScript Developer',
+  ];
+
+  const el = document.getElementById('typewriter-text')!;
+  let roleIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
+  const TYPE_SPEED = 90;
+  const DELETE_SPEED = 50;
+  const PAUSE_FULL = 2000;
+  const PAUSE_EMPTY = 400;
+
+  function tick() {
+    const current = roles[roleIndex];
+
+    if (!deleting) {
+      charIndex++;
+      el.textContent = current.slice(0, charIndex);
+      if (charIndex === current.length) {
+        deleting = true;
+        setTimeout(tick, PAUSE_FULL);
+        return;
+      }
+      setTimeout(tick, TYPE_SPEED);
+    } else {
+      charIndex--;
+      el.textContent = current.slice(0, charIndex);
+      if (charIndex === 0) {
+        deleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        setTimeout(tick, PAUSE_EMPTY);
+        return;
+      }
+      setTimeout(tick, DELETE_SPEED);
+    }
+  }
+
+  // Start after a short delay so it doesn't fire before the page loads
+  setTimeout(tick, 1200);
+</script>

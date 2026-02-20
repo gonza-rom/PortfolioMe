@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logoSrc from '../assets/logo.png';
+import Icon from './Icon.astro';
 
 const navLinks = [
   { href: '#home', label: 'Inicio' },
@@ -56,8 +57,8 @@ const navLinks = [
           class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-accent dark:hover:text-accent
                  hover:bg-accent/5 transition-all duration-200"
         >
-          <i class="iconoir-sun-light text-xl hidden dark:block"></i>
-          <i class="iconoir-half-moon text-xl block dark:hidden"></i>
+          <Icon name="sun-light" class="text-xl hidden dark:inline-block" />
+          <Icon name="half-moon" class="text-xl inline-block dark:hidden" />
         </button>
 
         <!-- Hamburger (mobile) -->
@@ -140,7 +141,6 @@ const navLinks = [
 
   // ─── Scroll: header background + active nav link ──────────
   const header = document.getElementById('main-header');
-  const sections = document.querySelectorAll<HTMLElement>('section[id], div[id="main-nav"]');
 
   function updateHeader() {
     if (window.scrollY > 20) {
@@ -176,12 +176,4 @@ const navLinks = [
   }, { passive: true });
 
   updateHeader();
-
-  // ─── Scroll reveal ────────────────────────────────────────
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(
-    entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')),
-    { threshold: 0.12 }
-  );
-  revealEls.forEach(el => observer.observe(el));
 </script>

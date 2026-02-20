@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 ---
 
 <section id="contact" class="py-24 bg-white dark:bg-surface-dark">
@@ -94,7 +95,7 @@
                  flex items-center justify-center gap-2"
         >
           <span id="submit-text">Enviar mensaje</span>
-          <i class="iconoir-send-diagonal text-lg"></i>
+          <Icon name="send-diagonal" class="text-lg inline-block" />
         </button>
 
         <!-- Status message -->
@@ -109,7 +110,6 @@
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
   const submitText = document.getElementById('submit-text')!;
-  const formStatus = document.getElementById('form-status')!;
 
   const nameInput = document.getElementById('contact-name') as HTMLInputElement;
   const emailInput = document.getElementById('contact-email') as HTMLInputElement;
@@ -155,12 +155,10 @@
       e.preventDefault();
       return;
     }
-    // Let the form submit normally to formsubmit.co
     submitBtn.disabled = true;
     submitText.textContent = 'Enviando...';
   });
 
-  // Inline field validation on blur
   nameInput.addEventListener('blur', () => {
     if (nameInput.value.trim().length < 2) showError(nameError, 'El nombre debe tener al menos 2 caracteres.');
     else clearError(nameError);

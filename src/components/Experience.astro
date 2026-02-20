@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro';
+
 const experiences = [
   {
     role: 'Desarrollador Full Stack Freelance',
@@ -15,9 +17,9 @@ const experiences = [
     ],
     techs: ['Next.js', 'React', 'Tailwind', 'Supabase', 'TypeScript', 'SQL', 'Vercel'],
     links: [
-      { label: 'Ver E-commerce', href: 'https://www.jmrmarroquineria.com.ar/', icon: 'iconoir-internet' },
-      { label: 'GitHub E-commerce', href: 'https://github.com/gonza-rom/jmr-ecommerce', icon: 'iconoir-github' },
-      { label: 'GitHub POS', href: 'https://github.com/gonza-rom/jmr-stock', icon: 'iconoir-github' },
+      { label: 'Ver E-commerce', href: 'https://www.jmrmarroquineria.com.ar/', icon: 'internet' },
+      { label: 'GitHub E-commerce', href: 'https://github.com/gonza-rom/jmr-ecommerce', icon: 'github' },
+      { label: 'GitHub POS', href: 'https://github.com/gonza-rom/jmr-stock', icon: 'github' },
     ],
   },
 ];
@@ -45,7 +47,7 @@ const experiences = [
             <div class="flex flex-col sm:items-end gap-1.5 flex-shrink-0">
               <span class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full
                            bg-accent/10 text-accent border border-accent/20">
-                <i class="iconoir-calendar text-sm"></i>
+                <Icon name="calendar" class="text-sm inline-block" />
                 {exp.period}
               </span>
               <span class="text-xs font-medium text-gray-500 dark:text-gray-400 px-3">{exp.type}</span>
@@ -59,7 +61,7 @@ const experiences = [
           <ul class="space-y-2.5 mb-6">
             {exp.highlights.map(h => (
               <li class="flex items-start gap-2.5 text-sm text-gray-600 dark:text-gray-400">
-                <i class="iconoir-check-circle flex-shrink-0 text-accent text-base mt-0.5"></i>
+                <Icon name="check-circle" class="flex-shrink-0 text-accent text-base mt-0.5 inline-block" />
                 <span>{h}</span>
               </li>
             ))}
@@ -85,7 +87,7 @@ const experiences = [
                        hover:border-accent hover:text-accent dark:hover:border-accent dark:hover:text-accent
                        transition-all duration-200"
               >
-                <i class={`${link.icon} text-sm`}></i>
+                <Icon name={link.icon} class="text-sm inline-block" />
                 {link.label}
               </a>
             ))}

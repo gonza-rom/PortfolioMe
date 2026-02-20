@@ -1,8 +1,11 @@
 ---
 import { education } from '../data/education';
+import Icon from './Icon.astro';
 const eduJson = JSON.stringify(
   education.map(({ modalTitle, modalDesc, modules }) => ({ modalTitle, modalDesc, modules }))
 );
+// Inline SVG for use in JS template literals (modal content)
+const pageSVG = `<svg width="1em" height="1em" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="display:inline-block;vertical-align:middle"><path d="M4 21.4V2.6C4 2.26863 4.26863 2 4.6 2H16.2515C16.4106 2 16.5632 2.06321 16.6757 2.17574L19.8243 5.32426C19.9368 5.43679 20 5.5894 20 5.74853V21.4C20 21.7314 19.7314 22 19.4 22H4.6C4.26863 22 4 21.7314 4 21.4Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 10L16 10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 18L16 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 14L12 14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 2V5.4C16 5.73137 16.2686 6 16.6 6H20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 ---
 
 <section id="education" class="py-24 bg-gray-50 dark:bg-surface-dark-card">
@@ -60,7 +63,7 @@ const eduJson = JSON.stringify(
                   rel="noopener"
                   class="inline-flex items-center gap-1.5 text-sm text-accent font-medium hover:underline"
                 >
-                  <i class="iconoir-page-star text-base"></i>
+                  <Icon name="page-star" class="text-base inline-block" />
                   {item.certLink.label}
                 </a>
               )}
@@ -70,7 +73,7 @@ const eduJson = JSON.stringify(
                 data-index={String(i)}
                 aria-haspopup="dialog"
               >
-                <i class="iconoir-expand text-base"></i>
+                <Icon name="expand" class="text-base inline-block" />
                 Ver más
               </button>
             </div>
@@ -84,6 +87,7 @@ const eduJson = JSON.stringify(
 
 <!-- Embedded data for client -->
 <script type="application/json" id="edu-data" set:html={eduJson}></script>
+<script type="application/json" id="edu-page-svg" set:html={JSON.stringify(pageSVG)}></script>
 
 <!-- Education Modal -->
 <div id="edu-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
@@ -93,7 +97,7 @@ const eduJson = JSON.stringify(
              rounded-lg text-gray-400 hover:text-gray-700 dark:hover:text-white
              hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
       aria-label="Cerrar">
-      <i class="iconoir-cancel text-lg"></i>
+      <Icon name="cancel" class="text-lg inline-block" />
     </button>
     <h3 id="edu-modal-title" class="text-xl font-bold text-gray-800 dark:text-white mb-2 pr-8"></h3>
     <p id="edu-modal-desc" class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4"></p>
@@ -105,6 +109,8 @@ const eduJson = JSON.stringify(
   const rawData = document.getElementById('edu-data')?.textContent ?? '[]';
   const educationData: { modalTitle: string; modalDesc: string; modules: { name: string; url: string }[] }[] =
     JSON.parse(rawData);
+
+  const pageSVG: string = JSON.parse(document.getElementById('edu-page-svg')?.textContent ?? '""');
 
   const modal = document.getElementById('edu-modal')!;
   const modalTitle = document.getElementById('edu-modal-title')!;
@@ -123,7 +129,7 @@ const eduJson = JSON.stringify(
           class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium
                  bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300
                  hover:bg-accent hover:text-white transition-all duration-200">
-          <i class="iconoir-page text-base"></i>${m.name}</a>`
+          ${pageSVG}${m.name}</a>`
       )
       .join('');
     modal.classList.add('open');

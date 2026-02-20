@@ -1,25 +1,26 @@
 ---
 import { Image } from 'astro:assets';
 import fotocvSrc from '../assets/fotocv.jpg';
+import Icon from './Icon.astro';
 
 const qualities = [
   {
-    icon: 'iconoir-community',
+    icon: 'community',
     title: 'Trabajo en Equipo',
     desc: 'Siempre me gustó trabajar en equipo, ¡cuantos más somos, es mejor!',
   },
   {
-    icon: 'iconoir-task-list',
+    icon: 'task-list',
     title: 'Responsabilidad',
     desc: 'Estar atento en cada tarea para lograrla en tiempo y forma.',
   },
   {
-    icon: 'iconoir-group',
+    icon: 'group',
     title: 'Empatía',
     desc: 'Ayudar a mi equipo en cada cosa que necesiten, siempre trato de entender al otro.',
   },
   {
-    icon: 'iconoir-accessibility',
+    icon: 'accessibility',
     title: 'Flexibilidad',
     desc: 'Soy capaz de adaptarme a diversas circunstancias que se presenten.',
   },
@@ -44,7 +45,7 @@ const qualities = [
                       bg-accent/10 text-accent mb-4
                       group-hover:bg-accent group-hover:text-white
                       transition-all duration-300">
-            <i class={`${icon} text-2xl`}></i>
+            <Icon name={icon} class="text-2xl inline-block" />
           </div>
           <h3 class="font-semibold text-gray-800 dark:text-white mb-2">{title}</h3>
           <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{desc}</p>
@@ -105,7 +106,7 @@ const qualities = [
             class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-accent text-white font-semibold
                    hover:bg-accent-dark transition-all duration-300 shadow-lg shadow-accent/25 hover:-translate-y-0.5"
           >
-            <i class="iconoir-page text-lg"></i>
+            <Icon name="page" class="text-lg inline-block" />
             Ver CV
           </a>
           <a

@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 ---
 
 <section
@@ -42,7 +43,7 @@
                hover:bg-accent-dark transition-all duration-300 shadow-lg hover:shadow-accent/30 hover:-translate-y-0.5"
       >
         Sobre mí
-        <i class="iconoir-arrow-right text-lg"></i>
+        <Icon name="arrow-right" class="text-lg inline-block" />
       </a>
       <a
         href="#portfolio"
@@ -57,7 +58,7 @@
   <!-- Scroll indicator -->
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
     <a href="#about" aria-label="Ir a la siguiente sección">
-      <i class="iconoir-arrow-down text-2xl text-white/60 hover:text-white transition-colors"></i>
+      <Icon name="arrow-down" class="text-2xl text-white/60 hover:text-white transition-colors inline-block" />
     </a>
   </div>
 </section>
@@ -115,6 +116,5 @@
     }
   }
 
-  // Start after a short delay so it doesn't fire before the page loads
   setTimeout(tick, 1200);
 </script>

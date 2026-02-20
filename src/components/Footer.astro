@@ -1,12 +1,13 @@
 ---
 import { Image } from 'astro:assets';
 import logoSrc from '../assets/logo.png';
+import Icon from './Icon.astro';
 
 const social = [
-  { href: 'https://www.linkedin.com/in/gonzaloromero-/', icon: 'iconoir-linkedin', label: 'LinkedIn' },
-  { href: 'https://github.com/Elotickk', icon: 'iconoir-github', label: 'GitHub' },
-  { href: 'https://www.instagram.com/gonza.romer0/', icon: 'iconoir-instagram', label: 'Instagram' },
-  { href: 'https://www.facebook.com/gonzalo.romero.35110/', icon: 'iconoir-facebook', label: 'Facebook' },
+  { href: 'https://www.linkedin.com/in/gonzaloromero-/', icon: 'linkedin', label: 'LinkedIn' },
+  { href: 'https://github.com/Elotickk', icon: 'github', label: 'GitHub' },
+  { href: 'https://www.instagram.com/gonza.romer0/', icon: 'instagram', label: 'Instagram' },
+  { href: 'https://www.facebook.com/gonzalo.romero.35110/', icon: 'facebook', label: 'Facebook' },
 ];
 
 const year = new Date().getFullYear();
@@ -44,7 +45,7 @@ const year = new Date().getFullYear();
                    border border-gray-300 dark:border-gray-600 hover:border-accent
                    transition-all duration-300"
           >
-            <i class={`${icon} text-lg`}></i>
+            <Icon name={icon} class="text-lg inline-block" />
           </a>
         ))}
       </div>
@@ -82,7 +83,7 @@ const year = new Date().getFullYear();
              transition-all duration-300 opacity-0 pointer-events-none"
       id="back-to-top"
     >
-      <i class="iconoir-arrow-up text-xl"></i>
+      <Icon name="arrow-up" class="text-xl inline-block" />
     </a>
   </div>
 </footer>
